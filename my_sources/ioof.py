@@ -25,7 +25,7 @@ class Source(source.Source):
         try:
             page = requests.get(BASE_URL)
             soup = BeautifulSoup(page.content, 'html.parser')
-            table = soup.find(class_='IES tertiary hidden fixed')
+            table = soup.find(class_='table table-striped')
             rows = table.find_all('tr')[1:]
 
             for row in rows:
@@ -40,9 +40,9 @@ class Source(source.Source):
     def get_latest_price(self, ticker):
         try:
             url = self.get_url(ticker)
-            page = requests.get(url)
+            page = requests.get('https://www.ioof.com.au/' + url)
             soup = BeautifulSoup(page.content, 'html.parser')
-            table = soup.find(id='unit-price')
+            table = soup.find(class_='table table-striped unit-price-details')
             row = table.find_all('tr')[1]
 
             col = row.find_all('td')
@@ -56,9 +56,9 @@ class Source(source.Source):
     def get_historical_price(self, ticker, time):
         try:
             url = self.get_url(ticker)
-            page = requests.get(url)
+            page = requests.get('https://www.ioof.com.au/' + url)
             soup = BeautifulSoup(page.content, 'html.parser')
-            table = soup.find(id='unit-price')
+            table = soup.find(iclass_='table table-striped unit-price-details')
             rows = table.find_all('tr')[1:]
 
             date = time.strftime('%Y-%m-%d')
