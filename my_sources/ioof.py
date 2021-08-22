@@ -13,7 +13,7 @@ from beancount.prices import source
 from beancount.core.number import D
 
 """
-bean-price -e 'AUD:my_sources.ioof:IOF0097AU'
+bean-price -e 'AUD:my_sources.ioof/IOF0097AU'
 """
 
 BASE_URL = 'https://www.ioof.com.au/performance/unit-prices'

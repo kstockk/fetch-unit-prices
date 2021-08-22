@@ -13,7 +13,7 @@ python setup.py install
 ## Usage
 
 ```
-bean-price -e 'AUD:my_sources.ioof:APIR_CODE'
+bean-price -e 'AUD:my_sources.ioof/APIR_CODE'
 
-bean-price -e 'AUD:my_sources.ioof:APIR_CODE' -d 2020-07-01
+bean-price -e 'AUD:my_sources.ioof/APIR_CODE' -d 2020-07-01
 ```
