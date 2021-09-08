@@ -52,6 +52,8 @@ class Source(source.Source):
             return source.SourcePrice(price, time, CURRENCY)
         except UnboundLocalError:
             return None
+        except AttributeError:
+            return None
 
     def get_historical_price(self, ticker, time):
         try:
@@ -69,4 +71,6 @@ class Source(source.Source):
                     price = D(cols[2].text.strip())
             return source.SourcePrice(price, time, CURRENCY)
         except UnboundLocalError:
+            return None
+        except AttributeError:
             return None
