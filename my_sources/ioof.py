@@ -23,7 +23,7 @@ class Source(source.Source):
 
     def get_url(self, ticker):
         try:
-            page = requests.get(BASE_URL)
+            page = requests.get(BASE_URL, headers={'User-Agent': 'Mozilla/5.0'})
             soup = BeautifulSoup(page.content, 'html.parser')
             table = soup.find(class_='table table-striped')
             rows = table.find_all('tr')[1:]
@@ -40,7 +40,7 @@ class Source(source.Source):
     def get_latest_price(self, ticker):
         try:
             url = self.get_url(ticker)
-            page = requests.get('https://www.ioof.com.au/' + url)
+            page = requests.get('https://www.ioof.com.au/' + url, headers={'User-Agent': 'Mozilla/5.0'})
             soup = BeautifulSoup(page.content, 'html.parser')
             table = soup.find(class_='table table-striped unit-price-details')
             row = table.find_all('tr')[1]
@@ -58,9 +58,9 @@ class Source(source.Source):
     def get_historical_price(self, ticker, time):
         try:
             url = self.get_url(ticker)
-            page = requests.get('https://www.ioof.com.au/' + url)
+            page = requests.get('https://www.ioof.com.au/' + url, headers={'User-Agent': 'Mozilla/5.0'})
             soup = BeautifulSoup(page.content, 'html.parser')
-            table = soup.find(iclass_='table table-striped unit-price-details')
+            table = soup.find(class_='table table-striped unit-price-details')
             rows = table.find_all('tr')[1:]
 
             date = time.strftime('%Y-%m-%d')
